@@ -11,12 +11,4 @@ public class DBUtil {
         Connection con = DriverManager.getConnection(DBUrl,DBLogin,DBpassword);
         return con;
     }
-    public static ResultSet DBSelect (PreparedStatement preStatement) throws SQLException {
-        Connection con = DBUtil.getConection();
-        return preStatement.executeQuery();
-    }
-    public static int DBOther(PreparedStatement preStatement) throws SQLException {
-        Connection con = DBUtil.getConection();
-        return preStatement.executeUpdate();
-    }
 }

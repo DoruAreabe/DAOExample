@@ -18,7 +18,7 @@ public class User {
         this.id=0;
         this.email = email;
         this.userName = userName;
-        this.password = password;
+        this.setPassword(password);
     }
 
     public int getId() {

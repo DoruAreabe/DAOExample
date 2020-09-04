@@ -18,7 +18,7 @@ public class User {
         this.id=0;
         this.email = email;
         this.userName = userName;
-        this.setPassword(password);
+        this.password = password;
     }
 
     public int getId() {
@@ -50,7 +50,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = BCrypt.hashpw(password,BCrypt.gensalt());
+        this.password = password;
     }
 
 

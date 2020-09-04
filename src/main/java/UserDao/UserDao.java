@@ -2,6 +2,7 @@ package UserDao;
 
 import DBUtil.DBUtil;
 import User.User;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class UserDao {
             PreparedStatement preparedStatement = con.prepareStatement(addSQL, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, user.getEmail());
             preparedStatement.setString(2, user.getUserName());
-            preparedStatement.setString(3, user.getPassword());
+            preparedStatement.setString(3, BCrypt.hashpw(user.getPassword(),BCrypt.gensalt()));
             preparedStatement.executeUpdate();
             ResultSet result = preparedStatement.getGeneratedKeys();
             if (result.next()) {
@@ -62,7 +63,7 @@ public class UserDao {
             PreparedStatement preparedStatement = con.prepareStatement(updateSQL);
             preparedStatement.setString(1, user.getEmail());
             preparedStatement.setString(2, user.getUserName());
-            preparedStatement.setString(3, user.getPassword());
+            preparedStatement.setString(3, BCrypt.hashpw(user.getPassword(),BCrypt.gensalt()));
             preparedStatement.setInt(4, user.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
